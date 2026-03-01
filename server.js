@@ -46,7 +46,12 @@ const corsOptions = {
   credentials: true,
 };
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: true,
+  credentials: true,
+}));
+
+//app.use(cors(corsOptions));
 // --- Day4 変更 ここまで ---
 // ※ 元は app.use(cors()); だけだった
 
