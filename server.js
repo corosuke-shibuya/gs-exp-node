@@ -23,13 +23,32 @@ const prisma = new PrismaClient();
 // ミドルウェア = リクエストを処理する前に実行される関数
 // 全てのリクエストに対して共通の処理を行う
 
-app.use(cors());
+//app.use(cors());
 // → CORS を許可
 //   これがないと Next.js から API にアクセスできない
 
-app.use(express.json());
+//app.use(express.json());
 // → JSON リクエストを解析
 //   req.body でJSONデータを受け取れるようにする
+
+// ========================================
+// CORS 設定を更新
+// ========================================
+
+// --- Day4 変更 ここから ---
+// 本番環境では特定のオリジンのみ許可
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "https://gs-exp-next-eosin.vercel.app/",  // あなたの Vercel URL
+    // 他の Vercel URL がある場合は追加
+  ],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+// --- Day4 変更 ここまで ---
+// ※ 元は app.use(cors()); だけだった
 
 //1.ここから簡単なAPIを作ります🤗
 app.get("/", (req, res) => {
