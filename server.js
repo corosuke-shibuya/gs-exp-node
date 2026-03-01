@@ -27,7 +27,7 @@ const prisma = new PrismaClient();
 // → CORS を許可
 //   これがないと Next.js から API にアクセスできない
 
-//app.use(express.json());
+app.use(express.json());
 // → JSON リクエストを解析
 //   req.body でJSONデータを受け取れるようにする
 
